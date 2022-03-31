@@ -1,7 +1,7 @@
 package com.sachinsandbhor.articles.data.entity
 
 data class ArticlesEntity(
-    val articleEntities: List<ArticleEntity>,
-    val status: String,
-    val totalResults: Int
+    var articles: List<ArticleEntity> = emptyList(),
+    var status: String? = null,
+    val totalResults: Int?
 )

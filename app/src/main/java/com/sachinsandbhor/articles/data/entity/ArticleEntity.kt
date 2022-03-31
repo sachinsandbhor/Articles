@@ -1,12 +1,11 @@
 package com.sachinsandbhor.articles.data.entity
 
 data class ArticleEntity(
-    val author: String,
-    val content: String,
-    val description: String,
-    val publishedAt: String,
-    val sourceEntity: SourceEntity,
-    val title: String,
-    val url: String,
-    val urlToImage: String
+    var author: String? = null,
+    var content: String? = null,
+    var description: String? = null,
+    var publishedAt: String? = null,
+    var title: String? = null,
+    var url: String? = null,
+    var urlToImage: String? = null
 )

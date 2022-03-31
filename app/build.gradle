@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -21,6 +23,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug {
+            buildConfigField("String", "API_KEY", "\"cb83be7689714393bab66e73877b68c4\"")
+            buildConfigField("String", "BASE_URL", "\"https://newsapi.org/v2/\"")
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -28,6 +34,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+    dataBinding {
+        enabled = true
     }
 }
 
@@ -39,7 +48,9 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-moshi:2.9.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
 }
