@@ -11,7 +11,7 @@ import com.sachinsandbhor.articles.presentation.util.DateUtil.Companion.formatDa
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.news_item.view.*
 
-class ArticleAdapter: RecyclerView.Adapter<ArticleViewHolder>() {
+class ArticleAdapter : RecyclerView.Adapter<ArticleViewHolder>() {
 
     private val articleList = ArrayList<ArticleEntity>()
 
@@ -28,18 +28,21 @@ class ArticleAdapter: RecyclerView.Adapter<ArticleViewHolder>() {
     override fun getItemCount(): Int = articleList.size
 
     fun updateArticles(articleList: ArticlesEntity) {
-        this.articleList.clear()
-        this.articleList.addAll(articleList.articles)
-        notifyDataSetChanged()
+        if (articleList.articles.isNotEmpty()) {
+            this.articleList.clear()
+            this.articleList.addAll(articleList.articles)
+            notifyDataSetChanged()
+        }
     }
 }
 
- class ArticleViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(articleItem: ArticleEntity) {
         with(itemView) {
             news_description.text = articleItem.title
-            Picasso.get().load(articleItem.urlToImage).placeholder(R.mipmap.ic_launcher).into(news_thumbnail)
+            Picasso.get().load(articleItem.urlToImage).placeholder(R.mipmap.ic_launcher)
+                .into(news_thumbnail)
             val publishDate = formatDate(articleItem.publishedAt!!)
             news_date.text = publishDate
         }
